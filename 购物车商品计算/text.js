@@ -62,6 +62,7 @@ var example1 = new Vue({
                 get: function() {
                     return this.checked.length;
                 }
+
             }
         },
   methods:{
@@ -75,6 +76,7 @@ var example1 = new Vue({
     },
     handleRemove:function(index){
       this.list.splice(index,1);
+      this.checked.splice(index,1);
     },
     currClick:function(item,index){
  
