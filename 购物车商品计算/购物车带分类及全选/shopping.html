@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="style_sort.css"/>
+</head>
+<body>
+	<div id="app" v-cloak>
+	  <template v-if="list.length">
+	  	<table>
+	  		<tbody v-for="(tableItem, tableIndex) in list" v-if="tableItem.productList.length">
+	  			<tr>
+		          <th><input type="checkbox" @click="handleTableItem(tableItem)" :checked="isCheckedTableItem(tableItem)">{{ tableItem.name }}</th>
+		          <th>序号</th>
+		          <th>商品名称</th>
+		          <th>商品单价</th>
+		          <th>购买数量</th>
+		          <th>操作</th>
+		        </tr>
+		        <tr v-for="(item, index) in tableItem.productList">
+		          <td><input type="checkbox" @click="handleChecked(item)" :checked="isChecked(item)"></td>
+		          <td>{{ index + 1 }}</td>
+		          <td>{{ item.name }}</td>
+		          <td>{{ item.price }}</td>
+		          <td>
+		            <button @click="handleReduce(item)" :disabled="item.count===1">-</button>
+		            {{ item.count }}
+		            <button @click="handleAdd(item)">+</button>
+		          </td>
+		          <td>
+		            <button @click="handleRemove(index, tableIndex)">移除</button>
+		          </td>
+		        </tr>
+	  		</tbody>
+	  	</table>
+	  	<div>
+	  		<input type="checkbox" @click="checkAll()" :checked="isCheckedAll()">全选
+	  	</div>	
+	    <div>总价：￥{{ totalPrice }}</div>
+	  </template>
+	  <div v-else>购物车为空</div>
+	</div>
+<script src="https://cdn.bootcss.com/vue/2.4.4/vue.js"></script>
+<script type="text/javascript" src="text.js"></script>
+</body>
+</html>
+

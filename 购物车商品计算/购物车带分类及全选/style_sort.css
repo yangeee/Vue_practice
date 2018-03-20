@@ -1,0 +1,21 @@
+
+[v-cloak] {
+	display: none;
+}
+table {
+	border: 1px soli #e9e9e9;
+	border-collapse: collapse;/* 表格两边的边框合并*/
+	border-spacing: 0;/*设置表格边框之间的边距*/
+	empty-cells: show;/*显示表格中空单元格上的边框和背景*/
+}
+th, td {
+	padding: 8px 16px;
+	border: 1px solid #e9e9e9;
+	text-align: left;
+}
+th {
+	background-color: #f7f7f7;
+	color: #5c6b77;
+	font-weight: 600;
+	white-space: nowrap;/*规定不换行*/
+}
