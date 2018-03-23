@@ -3,4 +3,4 @@ var app=new Vue({
 	data:{
 		value:5
 	}
-})
+});
