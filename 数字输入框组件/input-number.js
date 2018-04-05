@@ -8,7 +8,9 @@ Vue.component('input-number',{
 	<input\
 		type="text"\
 		:value="currentValue"\
-		@change="handleChange">\
+		@change="handleChange"\
+		@keyup.up="show_up"\
+		@keyup.down="show_down">\
 		<button\
 			@click="handleDown"\
 			:disabled="currentValue<=min">-</button>\
@@ -76,6 +78,12 @@ Vue.component('input-number',{
 					event.target.value=this.currentValue;//在中间的则把输入框的值设置为
 				}										//此值
 			}
+		},
+		show_up:function(){
+			this.currentValue+=1;
+		},
+		show_down:function(){
+			this.currentValue-=1;
 		}
 	},
 	mounted:function(){
