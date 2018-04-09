@@ -25,10 +25,10 @@ Vue.component("pane",{
 	},
 	watch:{
 		label(){
-			this.updateNav();
+			this.updateNav();//监听更新标题
 		}
 	},
 	mounted(){
-		this.updateNav();
+		this.updateNav();//初始化是调用一次
 	}
 })
