@@ -1,7 +1,7 @@
-Vue.component("buton",{
-	name:"buton",
+Vue.component("next",{
+	name:"next",
 	template:'\
-	<div class="myButton" @click="nextPage">\
+	<div class="nextButton" @click="nextPage">\
 	<slot></slot>\
 	</div>',
 	props:{

@@ -7,12 +7,20 @@
 .tab input{
 	margin-right: 20px;
 }
-.myButton{
+.button{
+	box-sizing:border-box;
+	-moz-box-sizing:border-box; /* Firefox */
+	-webkit-box-sizing:border-box; /* Safari */
+	padding:0 10%;
+	margin-top: 90%;
+	display: flex;
+	width: 300px;
+	flex-flow: row nowrap;
+}
+.nextButton{
 	display: flex;
 	justify-content:center;
-	margin-top: 90%;
-	margin-right: 15%;
-	margin-left: 45%;
+	width: 50px;
 	border-radius:6px;
 	border:1px solid #84bbf3;
 	cursor:pointer;
@@ -24,7 +32,27 @@
 	padding:9px 29px;
 	text-decoration:none;
 }
-.myButton:hover {
+.nextButton:hover {
+	opacity: 0.7;
+	transition: 1s;
+}
+.resetButton{
+	width: 30px;
+	display: flex;
+	justify-content:center;
+	border-radius:6px;
+	margin-right: 10%;
+	border:1px solid #84bbf3;
+	cursor:pointer;
+	color:white;
+	font-family:Arial;
+	background-color: #4dcfe7;
+	font-size:15px;
+	font-weight:bold;
+	padding:9px 29px;
+	text-decoration:none;
+}
+.resetButton:hover {
 	opacity: 0.7;
 	transition: 1s;
 }

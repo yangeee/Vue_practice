@@ -1,0 +1,27 @@
+Vue.component("reset",{
+	name:"reset",
+	template:'\
+	<div class="resetButton" @click="nextPage">\
+	<slot></slot>\
+	</div>',
+	props:{
+		value:{
+			type:Number
+		}
+	},
+	data:function(){
+		return{
+			th_value:this.value
+		}
+	},
+	methods:{
+		nextPage:function(){
+			this.th_value+=1;
+		}
+	},
+	watch:{
+		th_value:function(){
+			this.$emit('add',this.th_value);
+		}
+	}
+})
