@@ -12,6 +12,7 @@ Vue.component("pane",{
 			type:String,
 			default:""
 		}
+
 	},
 	data:function(){
 		return{

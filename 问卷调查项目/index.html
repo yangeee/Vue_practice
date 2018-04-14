@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>问卷调查</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<link href="font-awesome\css\font-awesome.min.css" rel="stylesheet">
+</head>
+<body>
+	<div id="app">
+		<tab :value='value' name="1">
+			<form>
+			1、选择您的性别:<br>
+			男:
+			<input type="radio" name="sex" value="male">
+			女:
+			<input type="radio" name="sex" value="female">
+			保密:
+			<input type="radio" name="sex" value="secret">
+			</form>
+			<buton :value="value" @add="nextPage">下一步</buton>
+		</tab>
+		<tab :value='value' name="2">
+			<form>
+			3、选择您的性别:<br>
+			男:
+			<input type="radio" name="sex" value="male">
+			女:
+			<input type="radio" name="sex" value="female">
+			保密:
+			<input type="radio" name="sex" value="secret">
+			</form>
+			<buton :value="value" @add="nextPage">下一步</buton>
+		</tab>
+		<tab :value='value' name="3">
+			<form>
+			1、选择您的性别:<br>
+			男:
+			<input type="radio" name="sex" value="male">
+			女:
+			<input type="radio" name="sex" value="female">
+			保密:
+			<input type="radio" name="sex" value="secret">
+			</form>
+		</tab>
+	</div>
+	<script type="text/javascript" src="vue.js"></script>
+	<script type="text/javascript" src="buton.js"></script>
+	<script type="text/javascript" src="tab.js"></script>
+	<script type="text/javascript">
+		var app=new Vue({
+			el:"#app",
+			data:{
+				value:0
+			},
+			methods:{
+				getTabs(){//得到子组件
+					return this.$children.filter(function(item){
+						return item.$options.name==='tab';
+					});
+				},
+				updateNav:function(){
+					var _this=this;
+					this.getTabs().forEach(function(pane,index){
+						if(index==_this.value+1){
+							pane.show=true;
+						}
+						else{
+							pane.show=false;
+						}
+					});
+				},
+				nextPage:function(b){
+					this.value=b;
+				}
+			},
+			watch:{
+				value:function(){
+					this.updateNav()
+				}
+			}
+		})
+	</script>
+</body>
+</html>

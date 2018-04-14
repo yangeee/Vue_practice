@@ -3,8 +3,10 @@ Vue.component("tabs",{
 		<div class="tabs">\
 			<div class="tabs-bar">\
 			 <div\
+			 v-show="ok"\
 			 :class="tabCls(item)"\
 			 v-for="(item,index) in navList"\
+			 :key="index"\
 			 @click="handleChange(index)">\
 			 <i class="fa fa-close"\
 			 @click.stop="handleClose(index)"></i>\
@@ -23,6 +25,7 @@ Vue.component("tabs",{
 	data:function () {
 		return{
 			currentValue:this.value,
+			ok:true,
 			navList:[]//储存tabs的标题和子组件的名字
 		}
 	},
@@ -44,15 +47,15 @@ Vue.component("tabs",{
 	updateNav(){
 		this.navList=[];
 		var _this=this;
-
 		this.getTabs().forEach(function(pane,index){
 			_this.navList.push({
 				label:pane.label,
-				name:pane.name||index
+				name:pane.name||index,
+				ok:true
 			});
-			if(!pane.name) pane.name=index;
-			if(index===0){
-				if(!_this.currentValue){
+			if(!pane.name) pane.name=index;//如果没有自定义名字，就设置为序号
+			if(index===0){//当序号为0时
+				if(!_this.currentValue){//如果此时显示为空，就设置下
 					_this.currentValue=pane.name||index;
 				}
 			}
@@ -75,18 +78,22 @@ Vue.component("tabs",{
 		this.$emit("on-click",name);
 	},
 	handleClose:function(index){
-		if(index>=1){
-		var nav=this.navList[index-1];
-		var name=nav.name;
-		if(index==this.navList.length-1){
-			this.currentValue=name;
-			this.$emit("input",name);
+		if(this.navList.length>1&&index==this.navList.length-1){//判断大于1个标签才显示前一个标签，并关闭选择的标签
+		var nav=this.navList[index-1];//等于他上一个
+		var name=nav.name;//获得Name值来控制显示
+		this.currentValue=name;//这里主要是为了获得删除后一个自动
+		this.$emit("input",name);//显示前一个的效果	
+		}
+		else{//当已经是最后一个标签时，直接默认为0
+			if(this.navList.length==1)
+			{
+				this.currentValue="0";
+				this.navList.splice(index,1);
+				return;
 			}
+			this.currentValue=this.navList[index+1].name;
 		}
-		else{
-			this.currentValue="0";
-		}
-		this.navList.splice(index,1);
+		this.navList.splice(index,1);//删除数组
 	}
 },
 watch:{

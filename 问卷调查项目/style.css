@@ -1,0 +1,30 @@
+.tab{
+
+	height: 400px;
+	width: 300px;
+	border: 2px solid #3399ff;
+}
+.tab input{
+	margin-right: 20px;
+}
+.myButton{
+	display: flex;
+	justify-content:center;
+	margin-top: 90%;
+	margin-right: 15%;
+	margin-left: 45%;
+	border-radius:6px;
+	border:1px solid #84bbf3;
+	cursor:pointer;
+	color:white;
+	font-family:Arial;
+	background-color: #4dcfe7;
+	font-size:15px;
+	font-weight:bold;
+	padding:9px 29px;
+	text-decoration:none;
+}
+.myButton:hover {
+	opacity: 0.7;
+	transition: 1s;
+}
