@@ -1,27 +1,30 @@
 Vue.component("reset",{
 	name:"reset",
 	template:'\
-	<div class="resetButton" @click="nextPage">\
+	<div class="resetButton" @click="resetButton">\
 	<slot></slot>\
 	</div>',
 	props:{
 		value:{
 			type:Number
+		},
+		reset_flag:{
+			type:Number
 		}
 	},
 	data:function(){
 		return{
-			th_value:this.value
+			re:this.reset_flag
 		}
 	},
 	methods:{
-		nextPage:function(){
-			this.th_value+=1;
+		resetButton:function(){
+			this.re+=1;
 		}
 	},
 	watch:{
-		th_value:function(){
-			this.$emit('add',this.th_value);
+		re:function(){
+			this.$emit('res',this.re);
 		}
 	}
 })

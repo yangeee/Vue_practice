@@ -9,33 +9,35 @@
 <body>
 	<div id="app">
 		<tab :value='value' name="1">
-			<form>
+			<form name="myform">
 			1、选择您的性别:<br>
 			男:
-			<input type="radio" name="sex" value="male">
+			<input type="radio" name="sex" value="male" v-model="flag">
 			女:
-			<input type="radio" name="sex" value="female">
+			<input type="radio" name="sex" value="female" v-model="flag">
 			保密:
-			<input type="radio" name="sex" value="secret">
+			<input type="radio" name="sex" value="secret" v-model="flag">
 			</form>
 			<div class="button">
-			<reset>重置</reset>
-			<next :value="value" @add="nextPage">下一步</next>
+			<reset @res="resetRadio" :reset_flag="reset_flag">重置</reset>
+			<next :value="value" @add="nextPage" :flag="flag">下一步</next>
 			</div>
 		</tab>
 		<tab :value='value' name="2">
-			<form>
-			3、选择您的性别:<br>
-			男:
-			<input type="radio" name="sex" value="male">
-			女:
-			<input type="radio" name="sex" value="female">
-			保密:
-			<input type="radio" name="sex" value="secret">
+			<form @change="handleChange">
+			2、选择至少2个您喜欢的运动:<br>
+			篮球:
+			<input type="checkbox" name="sport" value="basketball" v-model="flag2">
+			足球:
+			<input type="checkbox" name="sport" value="football" v-model="flag2">
+			棒球:
+			<input type="checkbox" name="sport" value="baseball" v-model="flag2">
+			短跑:
+			<input type="checkbox" name="sport" value="run" v-model="flag2">
 			</form>
 			<div class="button">
-			<reset>重置</reset>
-			<next :value="value" @add="nextPage">下一步</next>
+			<reset  @res="resetRadio" :reset_flag="reset_flag">重置</reset>
+			<next :value="value" @add="nextPage" :flag2="flag2">下一步</next>
 			</div>
 		</tab>
 		<tab :value='value' name="3">
@@ -58,12 +60,20 @@
 		var app=new Vue({
 			el:"#app",
 			data:{
-				value:0
+				value:0,
+				flag:0,
+				flag2:[],
+				reset_flag:0
 			},
 			methods:{
 				getTabs(){//得到子组件
 					return this.$children.filter(function(item){
 						return item.$options.name==='tab';
+					});
+				},
+				getInput(){//
+					return this.$children.filter(function(item){
+						return item.$options.name==='input';
 					});
 				},
 				updateNav:function(){
@@ -79,13 +89,23 @@
 				},
 				nextPage:function(){
 					this.value+=1;
+				},
+				handleChange:function(){
+					
+				},
+				resetRadio:function(re){
+					this.flag=0;//这里偷懒直接写成了一个函数
+					this.flag2=[];//这里利用置空数组，因为使用了v-model
 				}
 			},
 			watch:{
 				value:function(){
-					this.updateNav()
+					this.updateNav();
 				}
-			}
+			},
+			mounted(){
+				this.updateNav();
+				}
 		})
 	</script>
 </body>

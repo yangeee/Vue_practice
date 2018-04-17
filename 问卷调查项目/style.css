@@ -1,7 +1,6 @@
 .tab{
-
-	height: 400px;
-	width: 300px;
+	height: 300px;
+	width: 350px;
 	border: 2px solid #3399ff;
 }
 .tab input{
@@ -11,10 +10,10 @@
 	box-sizing:border-box;
 	-moz-box-sizing:border-box; /* Firefox */
 	-webkit-box-sizing:border-box; /* Safari */
-	padding:0 10%;
-	margin-top: 90%;
+	padding:0 15%;
+	margin-top: 60%;
 	display: flex;
-	width: 300px;
+	width: 350px;
 	flex-flow: row nowrap;
 }
 .nextButton{
@@ -32,6 +31,10 @@
 	padding:9px 29px;
 	text-decoration:none;
 }
+.disabled{
+	pointer-events:none;
+	background-color: #CFCFCF;
+}
 .nextButton:hover {
 	opacity: 0.7;
 	transition: 1s;
@@ -41,7 +44,7 @@
 	display: flex;
 	justify-content:center;
 	border-radius:6px;
-	margin-right: 10%;
+	margin-right: 13%;
 	border:1px solid #84bbf3;
 	cursor:pointer;
 	color:white;

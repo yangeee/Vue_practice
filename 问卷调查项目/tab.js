@@ -19,9 +19,6 @@ Vue.component("tab",{
 	},
 	watch:{
 		
-	},
-	mounted(){
-		this.$parent.updateNav();
 	}
 
 })

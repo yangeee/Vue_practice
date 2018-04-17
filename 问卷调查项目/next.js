@@ -1,27 +1,55 @@
 Vue.component("next",{
 	name:"next",
 	template:'\
-	<div class="nextButton" @click="nextPage">\
+	<div class="nextButton" :class="{disabled:th_flag}" @click="nextPage">\
 	<slot></slot>\
 	</div>',
 	props:{
 		value:{
 			type:Number
+		},
+		flag:{
+			
+		},
+		flag2:{
+			type:Array
 		}
 	},
 	data:function(){
 		return{
-			th_value:this.value
+			th_value:this.value,
+			th_flag:1,//控制按钮class
 		}
 	},
 	methods:{
-		nextPage:function(){
+		nextPage:function(){//控制跳转下一页
 			this.th_value+=1;
+		},
+		handleButton:function(){
+			if(this.flag!=0)
+			 this.th_flag=0;
+			else{
+				this.th_flag=1;//不设置的话重置后下一步的按钮仍然处于激活
+			}
+		},
+		handleChange:function(){
+			if (this.flag2.length>=2) {
+				this.th_flag=0;
+			}
+			else{
+				this.th_flag=1;//不设置的话重置后下一步的按钮仍然处于激活
+			}
 		}
 	},
 	watch:{
 		th_value:function(){
 			this.$emit('add',this.th_value);
+		},
+		flag:function(){//flag改变后改变控制CLASS的th_flag值，按钮可用
+			this.handleButton();
+		},
+		flag2:function(){
+			this.handleChange();
 		}
 	}
 })
